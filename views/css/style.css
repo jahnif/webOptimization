@@ -6,7 +6,9 @@
   -moz-box-sizing: border-box;
   -box-sizing: border-box;
 }
-
+.mover {
+  will-change: transform;
+}
 body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   background: black;
