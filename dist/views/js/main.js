@@ -506,6 +506,9 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
+// The solution was inspired by something spotted on the forums:
+// https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
+
 // Define the variables that will accessed during the updatePositions function.
 var items = document.getElementsByClassName('mover');
 var sinArray = [];
