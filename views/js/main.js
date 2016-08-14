@@ -458,7 +458,7 @@ var resizePizzas = function(size) {
             default:
                 console.log("bug in sizeSwitcher");
         }
-        var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+        var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
         // Assign new widths to pizza elements selected from the slider
         for (var i = 0; i < randomPizzas.length; i++) {
@@ -509,7 +509,7 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // Define the variables that will accessed during the updatePositions function.
 var items = document.getElementsByClassName('mover');
 var sinArray = [];
-var phase;
+var phase, movement;
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
@@ -524,9 +524,10 @@ function updatePositions() {
         sinArray[i] = Math.sin(scrollPosition + (i % 5));
     }
 
-    // Animate the pizzas using the sinArray values
+    // Animate the pizzas using the sinArray values. Use transform instead of left to avoid repainting
     for (var i = 0; i < items.length; i++) {
-        items[i].style.left = items[i].basicLeft + 100 * sinArray[i % 5] + 'px';
+         movement = items[i].basicLeft + 100 * sinArray[i % 5] + 'px';
+         items[i].style.transform = 'translateX(' + movement + ')';
     }
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
