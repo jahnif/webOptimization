@@ -15,7 +15,7 @@
 	- Changed the updatePostions function by:
 		- Moved the mover selector outside the function so it wouldn't run upon every scroll
 		- Stopped the forced synchronous layout by separating the calculations in the for loop into its own separate loop, storing the sin-based values in an array.
-		- Use transform:translateX intead of left to avoid repainting the pizzas.
+		- Use transform:translateX instead of left to avoid repainting the pizzas.
 
 * style.css
 	- Added a will-change:transform to the mover class
