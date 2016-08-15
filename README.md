@@ -1,3 +1,11 @@
+# Website Optimization Project
+
+This project optimized an existing website by increasing the page score of index.html as well as achieving 60fps performance by altering main.js
+
+## Running the Application
+
+The application can be run by opening index.html and pizza.html with a web browser.
+
 ## Changes Made
 
 * index.html
@@ -11,7 +19,7 @@
 * main.js
 	- Reduced the number of background pizzas from 200 to 35. Most of them were off screen.
 	- Greatly simplified the code for resizing the pizzas, removing unnecessary and complicated calculations. Resizing is now under 5ms.
-		- Also changed the 
+	- Moved the pizzasDiv outside its for loop so the query wasn't run every time a pizza was generated.
 	- Changed the updatePostions function by:
 		- Moved the mover selector outside the function so it wouldn't run upon every scroll
 		- Stopped the forced synchronous layout by separating the calculations in the for loop into its own separate loop, storing the sin-based values in an array.
