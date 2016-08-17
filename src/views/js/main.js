@@ -12,7 +12,7 @@ browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
 
 Creator:
-Cameron Pittman, Udacity Course Developer
+Cameron Pittman, Udacity Course DevelopTer
 cameron *at* udacity *dot* com
 */
 
@@ -427,13 +427,14 @@ var resizePizzas = function(size) {
     function changeSliderLabel(size) {
         switch (size) {
             case "1":
-                document.querySelector("#pizzaSize").innerHTML = "Small";
+                // Uses get ElementById instead of querySelector to increase speed.
+                document.getElementById("pizzaSize").innerHTML = "Small";
                 return;
             case "2":
-                document.querySelector("#pizzaSize").innerHTML = "Medium";
+                document.getElementById("pizzaSize").innerHTML = "Medium";
                 return;
             case "3":
-                document.querySelector("#pizzaSize").innerHTML = "Large";
+                document.getElementById("pizzaSize").innerHTML = "Large";
                 return;
             default:
                 console.log("bug in changeSliderLabel");
@@ -461,7 +462,8 @@ var resizePizzas = function(size) {
         var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
         // Assign new widths to pizza elements selected from the slider
-        for (var i = 0; i < randomPizzas.length; i++) {
+        // Checked the length of randomPIzzas in the variable definition to avoid recalculating each pass.
+        for (var i = 0, randomPizzasLength = randomPizzas.length; randomPizzasLength < randomPizzas.length; i++) {
             randomPizzas[i].style.width = newwidth + "%";
         }
     }
@@ -526,7 +528,7 @@ function updatePositions() {
     }
 
     // Animate the pizzas using the sinArray values. Use transform instead of left to avoid repainting
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0, len = items.length; len < items.length; i++) {
          movement = items[i].basicLeft + 100 * sinArray[i % 5] + 'px';
          items[i].style.transform = 'translateX(' + movement + ')';
     }

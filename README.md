@@ -19,11 +19,13 @@ The application can be run by opening index.html and pizza.html with a web brows
 * main.js
 	- Reduced the number of background pizzas from 200 to 35. Most of them were off screen.
 	- Greatly simplified the code for resizing the pizzas, removing unnecessary and complicated calculations. Resizing is now under 5ms.
+		- Used the getElementById call instead of querySelector to increase speed.
 	- Moved the pizzasDiv outside its for loop so the query wasn't run every time a pizza was generated.
 	- Changed the updatePostions function by:
 		- Moved the mover selector outside the function so it wouldn't run upon every scroll
 		- Stopped the forced synchronous layout by separating the calculations in the for loop into its own separate loop, storing the sin-based values in an array.
 		- Use transform:translateX instead of left to avoid repainting the pizzas.
+		- Checked the length of randomPIzzas and items in the variable definition of their respective for loops to avoid recalculating them each pass.
 
 * style.css
-	- Added a will-change:transform to the mover class
+	- Added the will-change:transform and backface-visibility: hidden properties to the mover class
