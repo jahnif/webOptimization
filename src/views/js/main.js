@@ -463,7 +463,7 @@ var resizePizzas = function(size) {
 
         // Assign new widths to pizza elements selected from the slider
         // Checked the length of randomPIzzas in the variable definition to avoid recalculating each pass.
-        for (var i = 0, randomPizzasLength = randomPizzas.length; randomPizzasLength < randomPizzas.length; i++) {
+        for (var i = 0, randomPizzasLength = randomPizzas.length; i < randomPizzasLength; i++) {
             randomPizzas[i].style.width = newwidth + "%";
         }
     }
@@ -512,7 +512,6 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // Define the variables that will accessed during the updatePositions function.
 var items = document.getElementsByClassName('mover');
 var sinArray = [];
-var phase, movement;
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
@@ -524,13 +523,12 @@ function updatePositions() {
 
     // Populate sin values array that will be used to animate the background pizzas
     for (var i = 0; i < 5; i++) {
-        sinArray[i] = Math.sin(scrollPosition + (i % 5));
+        sinArray[i] = Math.sin(100 + scrollPosition + (i % 5));
     }
 
     // Animate the pizzas using the sinArray values. Use transform instead of left to avoid repainting
-    for (var i = 0, len = items.length; len < items.length; i++) {
-         movement = items[i].basicLeft + 100 * sinArray[i % 5] + 'px';
-         items[i].style.transform = 'translateX(' + movement + ')';
+    for (var i = 0, len = items.length; i < len; i++) {
+        items[i].style.transform = 'translateX(' + 100 * sinArray[i % 5] + 'px)';
     }
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -547,19 +545,25 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+// Used getElemetbyId instead of querySelector for speed. Also moved this outside the loop.
+var movingPizzas = document.getElementById("movingPizzas1");
+var cols = 8;
+var s = 256;
+var elem, height = window.screen.height;
+var rows = height / s;
+var numPizzas = Math.floor(rows * cols);
+console.log(height, rows, numPizzas);
 document.addEventListener('DOMContentLoaded', function() {
-    var cols = 8;
-    var s = 256;
-    var elem;
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < numPizzas; i++) {
         elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = "images/pizza.png";
         elem.style.height = "100px";
         elem.style.width = "73.333px";
-        elem.basicLeft = (i % cols) * s;
+        // Changed the property to style.left because of use of translateX in the updatePositions loop
+        elem.style.left = (i % cols) * s + 'px';
         elem.style.top = (Math.floor(i / cols) * s) + 'px';
-        document.querySelector("#movingPizzas1").appendChild(elem);
+        movingPizzas.appendChild(elem);
     }
     updatePositions();
 });

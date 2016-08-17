@@ -26,6 +26,9 @@ The application can be run by opening index.html and pizza.html with a web brows
 		- Stopped the forced synchronous layout by separating the calculations in the for loop into its own separate loop, storing the sin-based values in an array.
 		- Use transform:translateX instead of left to avoid repainting the pizzas.
 		- Checked the length of randomPIzzas and items in the variable definition of their respective for loops to avoid recalculating them each pass.
+	- DOMContentLoaded Event Listner
+		- Used getElemetbyId instead of querySelector for speed in the DOMContentLoaded event listener.  Also moved this outside the loop.
+		- Changed the property to style.left because of use of translateX in the updatePositions loop.
 
 * style.css
 	- Added the will-change:transform and backface-visibility: hidden properties to the mover class
