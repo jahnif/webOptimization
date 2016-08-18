@@ -549,10 +549,20 @@ window.addEventListener('scroll', updatePositions);
 var movingPizzas = document.getElementById("movingPizzas1");
 var cols = 8;
 var s = 256;
-var elem, height = window.screen.height;
-var rows = height / s;
-var numPizzas = Math.floor(rows * cols);
-console.log(height, rows, numPizzas);
+var elem;
+// Calculates the number of pizzas needed depending on the screen size, adjusting for smaller, responsive screens.
+var height = window.screen.height;
+var width = window.screen.width;
+var rows = Math.ceil(height / s);
+var numPizzas, leftoverPizza;
+if (width >= 1000) {
+    numPizzas = rows * cols;
+} else {
+    numPizzas = rows * cols * height / width + 16;
+    leftoverPizza = (numPizzas % cols);
+    numPizzas -= leftoverPizza;
+    console.log(height, width, rows, numPizzas, leftoverPizza);
+}
 document.addEventListener('DOMContentLoaded', function() {
     for (var i = 0; i < numPizzas; i++) {
         elem = document.createElement('img');

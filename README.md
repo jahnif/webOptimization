@@ -29,6 +29,7 @@ The application can be run by opening index.html and pizza.html with a web brows
 	- DOMContentLoaded Event Listner
 		- Used getElemetbyId instead of querySelector for speed in the DOMContentLoaded event listener.  Also moved this outside the loop.
 		- Changed the property to style.left because of use of translateX in the updatePositions loop.
+	- Calculated the number of pizzas needed depending on the screen size, adjusting for smaller, responsive screens.
 
 * style.css
 	- Added the will-change:transform and backface-visibility: hidden properties to the mover class
